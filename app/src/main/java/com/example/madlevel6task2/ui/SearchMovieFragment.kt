@@ -19,7 +19,7 @@ class SearchMovieFragment : Fragment() {
     private val viewModel: MoviesViewModel by activityViewModels()
 
     private var movies = arrayListOf<Movie>()
-    private var moviesAdapter = MoviesAdapter(movies)
+    private var moviesAdapter = MoviesAdapter(movies, ::onMovieClick)
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -53,4 +53,10 @@ class SearchMovieFragment : Fragment() {
             moviesAdapter.notifyDataSetChanged()
         })
     }
+
+    private fun onMovieClick(movie: Movie) {
+        viewModel.setCurrentMovie(movie)
+        findNavController().navigate(R.id.action_searchMovieFragment_to_movieInformationFragment)
+    }
+
 }

@@ -19,4 +19,5 @@ data class Movie (
     @SerializedName("release_date") val releaseDate : String
 ) {
     fun getPosterURL() = "https://image.tmdb.org/t/p/w500${posterPath}"
+    fun getBackDropURL() = "https://image.tmdb.org/t/p/w500${backdropPath}"
 }

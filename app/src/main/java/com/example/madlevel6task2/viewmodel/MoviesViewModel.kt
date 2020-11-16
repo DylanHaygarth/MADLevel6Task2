@@ -13,15 +13,19 @@ import kotlinx.coroutines.launch
 class MoviesViewModel(application: Application) : AndroidViewModel(application) {
     private val moviesRepository = MovieRepository()
 
-    /**
-     * This property points direct to the LiveData in the repository, that value
-     * get's updated when user clicks FAB. This happens through the getTriviaNumber() in this class :)
-     */
     val movies: LiveData<List<Movie>> = moviesRepository.movies
+
+    val currentMovie: MutableLiveData<Movie> = MutableLiveData()
 
     fun getMovies(year: Int) {
         viewModelScope.launch{
             moviesRepository.getMovies(year)
+        }
+    }
+
+    fun setCurrentMovie(movie: Movie) {
+        viewModelScope.launch{
+            currentMovie.value = movie
         }
     }
 }
