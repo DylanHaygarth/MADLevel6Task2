@@ -1,5 +1,6 @@
 package com.example.madlevel6task2.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.madlevel6task2.api.MoviesAPI
@@ -15,14 +16,14 @@ class MovieRepository {
     val movies: LiveData<List<Movie>>
         get() = _movies
 
-    suspend fun getMovies()  {
+    suspend fun getMovies(year: Int) {
         try {
             //timeout the request after 5 seconds
             val result = withTimeout(5000) {
-                movieApiService.getMovies()
+                movieApiService.getMovies(year)
             }
 
-            _movies.value = result
+            _movies.value = result.results
         } catch (error: Throwable) {
         }
     }

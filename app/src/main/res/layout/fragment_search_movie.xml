@@ -52,6 +52,7 @@
         android:id="@+id/rvMovies"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:paddingStart="30dp"
         android:paddingEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
